@@ -28,7 +28,11 @@ const Write = () => {
     }
   };
 
+  const handleAdd = async (e) => {
+    e.preventDefault();
+   
 
+  };
   const handleClick = async (e) => {
     e.preventDefault();
    
@@ -52,9 +56,10 @@ const Write = () => {
   };
 
   return (
+  <div>
     <div> 
       <h3>Compose Rubric</h3>
-    <div className="rubric_form">
+    <div name="question">
     <input type="text" placeholder="rubric_title"    name="rubric_title"/>
     <input type="text" placeholder="question"    name="question" />
     <input type="text" placeholder="option one"    name="option_one"/>
@@ -65,6 +70,8 @@ const Write = () => {
     <input type="text" placeholder="comment"    name="comment"/>
      </div>
      
+     <button onClick={handleAdd}>Add Question</button>
+            </div>
             <button onClick={handleClick}>Save</button>
             </div>
   );

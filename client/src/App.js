@@ -11,6 +11,9 @@ import Rubrics from "./pages/Rubrics";
 import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
 import "./style.scss"
 
 const Layout = () => {
@@ -40,6 +43,18 @@ const router = createBrowserRouter([
         path: "/write",
         element: <Write />,
       },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
+      }
     ],
   },
   {
@@ -50,6 +65,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
+  
 ]);
 
 function App() {

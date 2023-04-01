@@ -16,24 +16,31 @@ const Navbar = () => {
         </div>
         <div className="links">
           <Link className="link" to="/ "> 
-            <h6>Home</h6>
+            Home
           </Link>
           <Link className="link" to="/about">
-            <h6>About</h6>
+          About
           </Link>
           <Link className="link" to="/contact">
-            <h6>Contact</h6>
+           Contact
           </Link>
          
           <span>{currentUser?.moderitor_user_name}</span>
           {currentUser ? (
-<span onClick={logout}>Logout</span>
+         <> 
+         <Link className="link" to="/write">Create Rubric</Link>
+         <span onClick={logout}>Logout</span></>   
           ) : (
             <Link className="link" to="/login">
               Login
             </Link>
 
-          )}
+          )
+          
+          
+          
+          
+          }
         
         </div>
       </div>

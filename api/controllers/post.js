@@ -15,11 +15,11 @@ console.log("from posts" + err)
 
 export const getPost = (req, res) => {
   const q =
-    "SELECT r.rubric_id, `rubric_title`,`question_number`, `question`,`option_one`,`option_two`,`option_three`,`option_four`,`option_five`,`comment`FROM rubric_form r JOIN moderator m ON r.rubric_id= m.moderator_id WHERE r.rubric_id=? ";
+    "SELECT r.rubric_id, `rubric_title`,`question_number`, `question`,`option1`,`option2`,`option3`,`option4`,`option_five`FROM rubric_form r JOIN moderator m ON r.rubric_id= m.moderator_id WHERE r.rubric_id=? ";
 
   db.query(q, [req.params.rubric_id], (err, data) => {
     if (err) return res.status(500).json(err);
-
+console.log("this is from getPost "+ err)
     return res.status(200).json(data[0]);
   });
 };
@@ -32,21 +32,18 @@ export const addPost = (req, res) => {
     if (err) return res.status(403).json("Token is not valid!");
 
     const q =
-      "INSERT INTO posts( `rubric_id`, `rubric_title`,`question_number`, `question`,`option_one`,`option_two`,`option_three`,`option_four`,`option_five`,`comment`,moderator_id) VALUES (?)";
+      "INSERT INTO posts(`rubric_title`,`question_number`, `question`,`option1`,`option2`,`option3`,`option4`,`option5`) VALUES (?)";
 
     const values = [
-      req.body.rubric_id,
-      req.body.rubric_title,
+        req.body.rubric_title,
         req.body.question_number,
         req.body.question,
-        req.body.option_one,
-        req.body.option_two,
-        req.body.option_three,
-        req.body.option_four,
-        req.body.option_five,
-        req.body.comment,
-  
-      userInfo.moderator_id,
+        req.body.option1,
+        req.body.option2,
+        req.body.option3,
+        req.body.option4,
+        req.body.option5,
+     
     ];
 
     db.query(q, [values], (err, data) => {
@@ -63,7 +60,7 @@ export const deletePost = (req, res) => {
   jwt.verify(token, "jwtkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
 //  const postId = req.params.id;
-// which id is this ? 
+
     // const postId = req.params.rubric_id;  
     console.log(req.params)
     // const q = "DELETE FROM rubric_table WHERE `rubric_id` = ? AND `moderator_id` = ?";
@@ -85,17 +82,17 @@ export const updatePost = (req, res) => {
 
     const postId = req.params.rubric_id;
     const q =
-      "UPDATE posts SET `rubric_title`=?,`question_number`=?,`question`=?,`option_one`=?,`option_two`=? ,`option_three`=? ,`option_four`=? ,`option_five`=?  WHERE `rubric_id` = ? AND `moderator_id` = ?";
+      "UPDATE posts SET `rubric_title`=?,`question_number`=?,`question`=?,`option1`=?,`option2`=? ,`option3`=? ,`option4`=? ,`option5`=?  WHERE `rubric_id` = ? AND `moderator_id` = ?";
 
     const values = [
       req.body.rubric_title,
         req.body.question_number,
         req.body.question,
-        req.body.option_one,
-        req.body.option_two,
-        req.body.option_three,
-        req.body.option_four,
-        req.body.option_five,
+        req.body.option1,
+        req.body.option2,
+        req.body.option3,
+        req.body.option4,
+        req.body.option5,
         req.body.comment];
 
     db.query(q, [...values, postId, userInfo.moderator_id], (err, data) => {

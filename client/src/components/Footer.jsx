@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       {/* <img src={Logo} alt="" /> */}
       <span>
-        The Judgers
+        2023@The Rubric
 
       </span>
     </footer>

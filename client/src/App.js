@@ -11,10 +11,12 @@ import Rubrics from "./pages/Rubrics";
 import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
+import Home from "./pages/Welcome";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Event from "./pages/Event";
 import "./style.scss"
+import Welcome from "./pages/Welcome";
 
 const Layout = () => {
   return (
@@ -36,7 +38,11 @@ const router = createBrowserRouter([
         element: <Rubrics />,
       },
       {
-        path: "/post/:id",
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/:id",
         element: <Single />,
       },
       {
@@ -52,8 +58,12 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/home",
-        element: <Home />,
+        path: "/welcome",
+        element: <Welcome />,
+      },
+      {
+        path: "/event",
+        element: <Event />,
       }
     ],
   },

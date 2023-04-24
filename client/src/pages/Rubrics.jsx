@@ -1,20 +1,21 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import  { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../context/authContext";
 import axios from "axios";
 
 
 const Rubrics = () => {
   const [posts, setPosts] = useState([]);
-
+  const { currentUser, logout } = useContext(AuthContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("/posts"); 
         setPosts(res.data);
-       
+       console.log(res)
       } catch (err) {
         console.log("from posts " + err);
       }
@@ -31,19 +32,26 @@ const Rubrics = () => {
 
 
   return (
+    
     <div className="home">
       <div className="posts">
-       <p>Welcome</p>
+        <div className="rtitle" id="fix" >
+        <h2>Rubrics</h2>
+           </div>
       
-        {posts && posts.map((rubric) => (
+           <button class="button-72" id='joinrub'>Create Rubric</button>
+        {/* {posts && posts.map((rubric) => (
           <div className="rubric" key={rubric.rubric_id}>
-              <div><h4>{rubric.rubric_title}</h4></div>
+              <div><p>Title: {rubric.rubric_title}</p></div>
               <Link className="link" to={`/${rubric.rubric_id}`}>
               <button>Open</button>
               </Link>
              
            </div>
-        ))}
+        ))} */}
+        {
+        
+        }
       </div>
     </div>
   );
